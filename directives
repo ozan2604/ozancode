@@ -1,0 +1,46 @@
+<template>
+  <div id="app">
+    
+    <p v-once>{{"Name: " + name}} <a v-bind:href="link">Link</a></p>
+    /* v-once title değeri değişir ama sen lkini kullan demek
+    v-bind:href adı üstünde bind(bağlamak) etmek için kullanılır */
+    <p>{{hello()}} <a v-bind:href="link">Link</a></p>
+    <p v-html="blogLink"></p>
+    <input type="text" v-bind:value="name" >
+   
+
+    
+  </div>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      
+      name: "ozan",
+      age : 10,
+      link: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F1345462422979698689%2FW_WucVf9_400x400.jpg&tbnid=yTJvpDpNd7HqaM&vet=12ahUKEwj4m5aD-o2AAxX1iP0HHR6mBFkQMygbegUIARCBAg..i&imgrefurl=https%3A%2F%2Ftwitter.com%2Falemdarrpolattt&docid=Wv3T4YzaJqkibM&w=400&h=400&q=polat%20alemdar&ved=2ahUKEwj4m5aD-o2AAxX1iP0HHR6mBFkQMygbegUIARCBAg",
+      
+      blogLink: "<a href ='https://www.google.com/imgres?imgurl=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F1345462422979698689%2FW_WucVf9_400x400.jpg&tbnid=yTJvpDpNd7HqaM&vet=12ahUKEwj4m5aD-o2AAxX1iP0HHR6mBFkQMygbegUIARCBAg..i&imgrefurl=https%3A%2F%2Ftwitter.com%2Falemdarrpolattt&docid=Wv3T4YzaJqkibM&w=400&h=400&q=polat%20alemdar&ved=2ahUKEwj4m5aD-o2AAxX1iP0HHR6mBFkQMygbegUIARCBAg'>Link</a>"
+      }
+
+      }, methods:{
+      hello: function(){
+        this.name= "samet"
+        return this.name + " " + this.age
+
+      },
+
+      namebelirle: {
+        isim : function(){
+          return this.isim
+        }
+      }
+      }
+}
+</script>
+<style >
+
+
+
+</style>
