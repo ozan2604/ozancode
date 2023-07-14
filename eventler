@@ -1,0 +1,56 @@
+<template>
+  <div id="app">
+
+    <button v-on:click="showalert('sjsjsjssjs')">buton</button>
+    <p></p>
+    <button v-on:click="arttır"> sayaç arttırmak için tıklayınız</button>
+    <button v-on:click="azalt"> sayaç azaltmak için tıklayınız</button>
+    <p v-on:mousemove="updatecords(2,$event)"> koordinatlar {{ x }} , {{ y }}</p>
+    <span> GİZLİ BÖLME </span>
+    <p>{{"Sayaç : " + sayaç}}</p>
+    <p>{{görev()}}</p>
+    
+   
+
+    
+  </div>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      sayaç:0,
+      
+    }
+      },
+
+      methods: {
+      showalert(name){
+        alert(name)
+        
+      },
+      
+      arttır(){
+        return this.sayaç+=3;
+      },
+      azalt(){
+        return this.sayaç-=50;
+      },
+
+      görev(){
+        return this.sayaç==53 ? "görev başarılı :) " : "görev tamamlanmadı :("
+      },
+      updatecords(step,event){
+        this.sayaç+=step;
+        this.x= event.clientX;
+        this.y=event.clientY;
+
+      }
+    }
+}
+</script>
+<style >
+
+
+
+</style>
