@@ -1,0 +1,81 @@
+<template>
+  <div id="app">
+    <div 
+    @click="attachedclass = !attachedclass"
+    :class="{red: attachedclass, blue : !attachedclass}"
+    class="box"></div>
+    <div
+    @click="attachedclass=!attachedclass"
+    :class="divclass"
+    class="box"></div>
+    <div class="box" :style="customStyle"></div>
+    <div class="box" :style="[customStyle , {witdh: yukseklik + 'px'}]"></div>
+    
+    <hr>
+    <input type="text" v-model="color">
+    <input type="text" v-model="height">
+    
+  </div>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      attachedclass : false,
+      color:"green",
+      height: 100,
+      }
+  
+  },
+  computed : {
+        customStyle: function(){
+          return{
+            backgroundColor: this.color,
+            height : this.height + "px"
+          }
+        },
+        divclas: function(){
+          return {
+            red :this.attachedclass,
+            blue:!this.attachedclass
+          }
+        }
+
+      }
+}
+</script>
+<style >
+.box{
+  width: 150px;
+  height: 100px;
+  background-color: gray;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.box2{
+  width: 150px;
+  height: 150px;
+  background-color: gray;
+  display: inline-block;
+  margin-right: 5px;
+}
+.box3{
+  width: 200px;
+  height: 200px;
+  background-color:gray;
+  display: inline-block;
+  margin-right: 5px;
+}
+.greeen{
+  background-color: green;
+}
+.blue{
+  background-color: blue;
+}
+.red{
+  background-color: red;
+}
+
+
+</style>
