@@ -1,0 +1,54 @@
+//computed= yapısı methodlara benzer 
+
+<template>
+  <div id="app">
+    
+    <button v-on:click="sayaç++"> arttır</button>
+    <button v-on:click="sayaç--"> azalt</button>
+    <button v-on:click="ikincisayaç++"> arttır</button>
+    <button v-on:click="ikincisayaç--"> azalt</button>
+  
+    <p>{{"Sayaç : " + sayaç}}</p>
+    <p> </p>
+    <p>{{ "ikincisayaç: " + ikincisayaç }}</p>
+    <p>{{result()}}  {{output}}</p>
+    
+   
+
+    
+  </div>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      sayaç:0,
+      ikincisayaç:0,
+    }
+  },
+    methods: {
+      result: function(){
+        console.log("method çalışıyor");
+        return this.sayaç>10? "sayaç 10dan büyük" : "sayaç 10dan küçük"
+
+
+      }
+    },
+
+    computed: {
+      output : function(){
+         console.log("computed çalışıyor");
+        return this.ikincisayaç>10? "2. sayaç 10dan büyük" : "2. sayaç 10dan küçük"
+
+
+      }
+    }
+  }
+  
+
+</script>
+<style >
+
+
+
+</style>
