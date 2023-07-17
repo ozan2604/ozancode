@@ -1,0 +1,54 @@
+<template>
+  <div id="app">
+    
+<p v-if="show">beni görebilirsin</p>
+<p v-if="!show">beni görebilirmisin acaba</p>
+
+<button @click="show=!show"> Göster / Gizle</button>
+
+<p v-if="num >5 "> number bigger than 5 </p>
+<p v-else-if="num =5"> number is equal 5</p>
+<p v-else> number is smaller than 5 </p>
+
+
+<button @click="showparagh=!showparagh">Göster/ Gizle</button>
+ <p v-show="showparagh">index göterir</p>
+
+
+<ul>
+  <li v-for="product in products" > {{ product }}</li>
+  <li v-for="(product , index) in products" > {{ product }} - {{index}}</li>
+  <button @click="products.push('masa')"> Ekle </button>
+ </ul>
+ 
+ 
+ 
+ 
+ <span v-for="i in 10"> {{i}}</span>
+
+</div>
+
+
+
+</template>
+<script>
+export default {
+  data() {
+    return {
+      show : false,
+      num:10,
+      showparagh: false,
+      products: [ "monitor" ," klavye " , "mouse" , "hopörlör"]
+      
+      
+      }
+  }
+}
+</script>
+<style >
+div{
+  border: 1px solid #000;
+  padding: 5px 10px;
+}
+
+</style>
