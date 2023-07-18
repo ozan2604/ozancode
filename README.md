@@ -1,0 +1,2 @@
+# ozancode
+javascript tekrar kodları
