@@ -1,0 +1,139 @@
+<template>
+    <html>
+        <head>...</head>
+        <body>
+            <div id="app">
+                <section class="row">
+                ::before
+                <div class="small-6 columns" >
+                <h1 class="text-center">SEN</h1>
+                <div class="healthbar">
+                    <div :style="{witdh: player_heal + '%'}" class="healthbar text-center" style="bacground_color:green; margin:0; color:white"></div>
+                {{player_heal}}% 
+                </div>
+            </div>
+            <div class="small_6 columns">
+                <h1 class="text-center">CANAVAR</h1>
+                <div class="healthbar">
+                    <div :style="{witdh: monster_heal + '%'}" class="healthbar text-center" style="...">
+                        {{monster_heal}}%
+                    </div>
+                </div>
+                </div>
+            </section>
+            <section class="row controls" v-if="!game_is_on">
+                <div class="small-12 columns">
+                    <button id="start-game" @click="start_game">YENİ OYUN</button>
+                </div>
+            </section>
+
+
+            <section class="row controls" v-if="game_is_on">
+                <div class="small-12 columns">
+                <button id="attack" @click="attack">SALDIRI</button>
+                <button id="special-atack" @click="special_attack">ÖZEL SALDIRI</button>
+                <button id="heal" @click="heal_up">İLK YARDIM</button>
+                <button id="give_up" @click="give_up">PES ET</button>
+            </div>
+            </section>
+            <section class="row log" v-if="game_is_on">
+                <div class="small-12 columns">
+                    <ul>
+                        // eslint-disable-next-line vue/require-v-for-key
+                        <li v-for="(log,i) in logs" :key="i">
+                            {{log.text}}
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            </div>
+        </body>
+    </html>
+</template>
+<script>
+export default {
+    data(){
+        return{
+            player_heal:100,
+            monster_heal:100,
+            game_is_on:false,
+            logs :[]
+        }
+            
+        }, 
+        methods : {
+            start_game(){
+                this.game_is_on =true;
+            },
+            attack(){
+                var point =Math.ceil(Math.random()*10);
+                this.monster_heal-=point;
+                this.add_to_log({ turn : "p" , Text : "OYUNCU ATAĞI(" + point +")"})
+                this.monster_attack
+               
+
+            },
+            special_attack(){ var point =Math.ceil(Math.random()*25);
+                this.monster_heal-=point;
+                this.add_to_log({ turn : "p" , Text : "ÖZEL OYUNCU ATAĞI(" + point +")"})
+                this.monster_attack
+                
+                
+            },
+            hel_up(){
+                 var point =Math.ceil(Math.random()*20);
+                this.player_heal+=point;
+                this.add_to_log({ turn : "p" , Text : "İLK YARDIM(" + point +")"})
+                this.monster_attack
+               
+
+            },
+            give_up(){
+                this.player_heal=0;
+                this.add_to_log({ turn : "p" , Text : "OYUNCU PES ETTİ"})
+                
+
+            },
+            monster_attack(){
+                var point = Math.ceil(Math.random()*15);
+                this.player_heal-=point;
+                this.add_to_log({ turn : "m" , Text : "CANAVAR ATAĞI(" + point +")"})
+                
+            },
+            add_to_log(log){
+                this.logs.push(log);
+
+            }
+
+
+            
+        },
+
+        watch: {
+            player_heal(value){
+                if(value<=0){
+                    this.player_heal=0;
+                   if (confirm('oyunu KAYBETTİN tosun tekrar denmek istermisin??')){
+                    this.player_heal=100;
+                    this.monster_heal=100;
+
+                   }
+                } else if(value >=100){
+                    this.player_heal=100;
+                }
+            },
+            monster_heal(value){
+                if(value<=0){
+                    this.monster_heal=0;
+                    if (confirm('oyunu KAZANDIN tosun tekrar denmek istermisin??')){
+                    this.player_heal=100;
+                    this.monster_heal=100;
+                }
+            }
+        }
+        }
+        }
+</script>
+<style lang="">
+    
+</style>
