@@ -4,7 +4,7 @@
         <body>
             <div id="app">
                 <section class="row">
-                ::before
+                
                 <div class="small-6 columns" >
                 <h1 class="text-center">SEN</h1>
                 <div class="healthbar">
@@ -36,11 +36,12 @@
                 <button id="give_up" @click="give_up">PES ET</button>
             </div>
             </section>
-            <section class="row log" v-if="game_is_on">
+            <section class="row log" v-if="logs.length > 0" >
                 <div class="small-12 columns">
                     <ul>
-                        // eslint-disable-next-line vue/require-v-for-key
-                        <li v-for="(log,i) in logs" :key="i">
+                        <li
+                        :class="{'player turn' : log.turn=='p' , 'monster turn' : log.turn=='m'}"
+                        v-for="(log,i) in logs" :key="i">
                             {{log.text}}
                         </li>
                     </ul>
@@ -68,7 +69,7 @@ export default {
             attack(){
                 var point =Math.ceil(Math.random()*10);
                 this.monster_heal-=point;
-                this.add_to_log({ turn : "p" , Text : "OYUNCU ATAĞI(" + point +")"})
+                this.add_to_log({ turn : "p" , Text : "OYUNCU ATAĞI(" + point +/**ç555555555555555555555ıu */")"})
                 this.monster_attack
                
 
@@ -113,9 +114,10 @@ export default {
             player_heal(value){
                 if(value<=0){
                     this.player_heal=0;
-                   if (confirm('oyunu KAYBETTİN tosun tekrar denmek istermisin??')){
+                   if (confirm('oyunu KAYBETTİN tosun tekrar denemek istermisin??')){
                     this.player_heal=100;
                     this.monster_heal=100;
+                    this.logs= [];
 
                    }
                 } else if(value >=100){
@@ -125,9 +127,10 @@ export default {
             monster_heal(value){
                 if(value<=0){
                     this.monster_heal=0;
-                    if (confirm('oyunu KAZANDIN tosun tekrar denmek istermisin??')){
+                    if (confirm('oyunu KAZANDIN tosun tekrar denemek istermisin??')){
                     this.player_heal=100;
                     this.monster_heal=100;
+                     this.logs= [];
                 }
             }
         }
